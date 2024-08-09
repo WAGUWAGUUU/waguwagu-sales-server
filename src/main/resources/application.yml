@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: sales
+  graphql:
+    path: /graphql
+    graphiql:
+      enable: true
+      printer:
+        enable: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/store?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  kafka:
+    bootstrap-servers: 34.71.194.186:9094
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      group-id: store-group7941
+      auto-offset-reset: earliest
