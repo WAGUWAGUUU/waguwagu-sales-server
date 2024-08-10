@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -16,12 +16,21 @@ import java.sql.Timestamp;
 @Builder
 public class TotalSalesPerMonth {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long totalSalesPerMonthId;
+
     @Column(name = "STORE_ID")
     private Long storeId;
 
-    @Column(name = "TOTAL_SALES_PER_Month_DATE")
-    private Timestamp totalSalesPerMonthDate;
+    @Column(name = "MONTH")
+    private LocalDate month;
 
-    @Column(name = "TOTAL_SALES_PER_Month_TOTAL_COST")
-    private int totalSalesPerMonthTotalCost;
+    public TotalSalesPerMonth(Long storeId, LocalDate month, int monthSales) {
+        this.storeId = storeId;
+        this.month = month;
+        this.monthSales = monthSales;
+    }
+
+    @Column(name = "MONTH_SALES")
+    private int monthSales;
 }
