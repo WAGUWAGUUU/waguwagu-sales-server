@@ -22,7 +22,7 @@ public class SchedulerService {
 //    @Scheduled(cron = "0 59 23 L * ?")
     // 매달 1일 전의 달 측정
 //    @Scheduled(cron = "0 0 0 1 * *")
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 1 * * *")
     public void run() {
         LocalDate localDate = LocalDate.now().minusMonths(1);
         YearMonth month = YearMonth.from(localDate);

@@ -1,5 +1,6 @@
 package com.example.sales.service;
 
+import com.example.sales.global.dto.SalesByYearResponse;
 import com.example.sales.global.entity.TotalSalesPerDay;
 import com.example.sales.global.entity.TotalSalesPerMonth;
 import com.example.sales.global.kafka.KafkaSalesDTO;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +35,22 @@ public class TotalSalesPerMonthServiceImpl implements TotalSalesPerMonthService{
                 years.add(year);
             }
         }
+        Collections.sort(years);
         return years;
+    }
+
+    @Override
+    public List<SalesByYearResponse> getSalesByYear(Long storeId, int year) {
+        List<SalesByYearResponse> result = new ArrayList<>();
+        List<TotalSalesPerMonth> allByStoreId = totalSalesPerMonthRepository.findAllByStoreId(storeId);
+        for(TotalSalesPerMonth sales : allByStoreId) {
+            if(sales.getMonth().getYear() == year) {
+                result.add(SalesByYearResponse.from(sales));
+                System.out.println(SalesByYearResponse.from(sales));
+            }
+        }
+        Collections.sort(result);
+        System.out.println(result);
+        return result;
     }
 }

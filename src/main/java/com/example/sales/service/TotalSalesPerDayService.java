@@ -14,4 +14,6 @@ public interface TotalSalesPerDayService {
     int getTotalSalesByMonth(Long storeId, LocalDate localDate);
 
     List<Long> getTotalStoreId();
+
+
 }
