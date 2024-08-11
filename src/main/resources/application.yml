@@ -26,3 +26,6 @@ spring:
       auto-offset-reset: earliest
 server:
   port: 8083
+mail:
+  sender: teamwaguwagu@gmail.com
+  password: wswt qqnl pjqu suby

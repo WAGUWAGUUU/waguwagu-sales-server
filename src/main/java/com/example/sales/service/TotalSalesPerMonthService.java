@@ -1,7 +1,7 @@
 package com.example.sales.service;
 
-import com.example.sales.global.kafka.KafkaSalesDTO;
-import com.example.sales.global.kafka.KafkaStatus;
+import java.util.List;
 
 public interface TotalSalesPerMonthService {
+    List<Integer> getYearsByStoreId(Long storeId);
 }
