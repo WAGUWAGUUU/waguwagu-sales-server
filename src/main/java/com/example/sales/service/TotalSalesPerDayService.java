@@ -1,5 +1,6 @@
 package com.example.sales.service;
 
+import com.example.sales.global.dto.SalesByDayResponse;
 import com.example.sales.global.entity.TotalSalesPerDay;
 import com.example.sales.global.kafka.KafkaSalesDTO;
 import com.example.sales.global.kafka.KafkaStatus;
@@ -15,5 +16,6 @@ public interface TotalSalesPerDayService {
 
     List<Long> getTotalStoreId();
 
+    List<SalesByDayResponse> getSalesByMonth(Long storeId, int year, int month);
 
 }

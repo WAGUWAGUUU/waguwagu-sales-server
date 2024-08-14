@@ -18,7 +18,7 @@ public class SalesEmailSender {
     @Value("${mail.password}")
     private String mailPassword;
 
-    public void emailSender(int month, String email, int montlySales) throws MessagingException {
+    public void emailSender(String storeName, int month, String email, Long monthlySales) throws MessagingException {
         String to = email; // 받는 사람의 이메일 주소
         String from = mailSender; // 보내는 사람의 이메일 주소
         String password = mailPassword; // 보내는 사람의 이메일 계정 비밀번호
@@ -43,7 +43,7 @@ public class SalesEmailSender {
         msg.setFrom(new InternetAddress(from));
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
         msg.setSubject("waguwagu에서 월별 매출 알려드립니다.");
-        String emailContent = "이번" + month + "월 총 매출은 " + montlySales +"원 입니다.";
+        String emailContent = storeName + " 가게의 이번 " + month + "월 총 매출은 " + monthlySales +"원 입니다.";
         msg.setText(emailContent);
         // 메일 보내기
         Transport.send(msg);

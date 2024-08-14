@@ -25,12 +25,13 @@ public class TotalSalesPerMonth {
     @Column(name = "MONTH")
     private LocalDate month;
 
-    public TotalSalesPerMonth(Long storeId, LocalDate month, int monthSales) {
-        this.storeId = storeId;
-        this.month = month;
-        this.monthSales = monthSales;
-    }
 
     @Column(name = "MONTH_SALES")
-    private int monthSales;
+    private Long monthlySales;
+
+    public TotalSalesPerMonth(Long storeId, LocalDate month, Long monthlySales) {
+        this.storeId = storeId;
+        this.month = month;
+        this.monthlySales = monthlySales;
+    }
 }

@@ -35,7 +35,8 @@ public class TotalSalesPerMonthServiceImpl implements TotalSalesPerMonthService{
                 years.add(year);
             }
         }
-        Collections.sort(years);
+        // 역순
+        years.sort(Collections.reverseOrder());
         return years;
     }
 

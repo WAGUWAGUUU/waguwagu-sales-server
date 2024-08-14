@@ -1,5 +1,6 @@
 package com.example.sales.service;
 
+import com.example.sales.global.dto.SalesByDayResponse;
 import com.example.sales.global.dto.TotalSalesPerDayRequest;
 import com.example.sales.global.entity.TotalSalesPerDay;
 import com.example.sales.global.kafka.KafkaSalesDTO;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +24,10 @@ import java.util.Optional;
 public class TotalSalesPerDayServiceImpl implements TotalSalesPerDayService {
     private final TotalSalesPerDayRepository totalSalesPerDayRepository;
 
-    @KafkaListener(topics = "order-topic")
+    @KafkaListener(topics = "store-income-topic")
     @Override
     public void createTotalSalesPerDay(KafkaStatus<KafkaSalesDTO> kafkaStatus) {
-        if(kafkaStatus.status().equals("sales")) {
+        if(kafkaStatus.status().equals("insert")) {
             Long storeId = kafkaStatus.data().storeId();
             LocalDate localDate = kafkaStatus.data().time().toLocalDateTime().toLocalDate();
             // (총 판매금액 - 배달비) * 0.8 의 수익 가져감
@@ -67,7 +69,21 @@ public class TotalSalesPerDayServiceImpl implements TotalSalesPerDayService {
         return totalSalesByMonth;
     }
 
-
-
-
+    // 원하는 연월에 맞는 daily sales 가져오기
+    @Override
+    public List<SalesByDayResponse> getSalesByMonth(Long storeId, int year, int month) {
+        List<SalesByDayResponse> result = new ArrayList<>();
+        List<TotalSalesPerDay> allByStoreId = totalSalesPerDayRepository.findAllByStoreId(storeId);
+        // 원하는 연도와 월 설정
+        LocalDate localDate = LocalDate.of(year, month, 1);
+        YearMonth yearMonth = YearMonth.from(localDate);
+        // 원하는 연도와 월에 맞는 데이터 가져오기
+        for(TotalSalesPerDay day : allByStoreId) {
+            YearMonth from = YearMonth.from(day.getDate());
+            if(from.equals(yearMonth))
+                result.add(SalesByDayResponse.from(day));
+        }
+        Collections.sort(result);
+        return result;
+    }
 }

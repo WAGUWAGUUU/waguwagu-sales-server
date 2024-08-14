@@ -8,7 +8,7 @@ spring:
       printer:
         enable: true
   datasource:
-    url: jdbc:mysql://localhost:3306/store?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://34.69.39.99:32001/store?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:
@@ -28,4 +28,4 @@ server:
   port: 8083
 mail:
   sender: teamwaguwagu@gmail.com
-  password: wswt qqnl pjqu suby
+  password: zpdy imzd yyjt tufg
