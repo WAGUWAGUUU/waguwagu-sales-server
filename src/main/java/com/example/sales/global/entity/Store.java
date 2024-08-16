@@ -64,8 +64,5 @@ public class Store {
     @JoinColumn(name = "OWNER_ID")  // Foreign key
     private Owner owner;
 
-//    @OneToMany(mappedBy = "store")
-//    private List<String> menuCategories;
-
 }
 

@@ -1,14 +1,8 @@
 spring:
   application:
     name: sales
-  graphql:
-    path: /graphql
-    graphiql:
-      enable: true
-      printer:
-        enable: true
   datasource:
-    url: jdbc:mysql://34.69.39.99:32001/store?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://mysql/store?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:
@@ -24,8 +18,5 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: store-group79412
       auto-offset-reset: earliest
-server:
-  port: 8083
-mail:
-  sender: teamwaguwagu@gmail.com
-  password: zpdy imzd yyjt tufg
+#server:
+#  port: 8083

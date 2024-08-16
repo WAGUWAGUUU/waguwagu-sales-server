@@ -28,7 +28,4 @@ public class Owner {
     @Column(name = "OWNER_IS_DELETED")
     private boolean ownerIsDeleted;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Store> stores;
-
 }
