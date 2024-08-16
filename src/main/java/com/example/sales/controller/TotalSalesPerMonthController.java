@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/sales-month")
+@RequestMapping("api/v1/sales/sales-month")
 @RequiredArgsConstructor
 public class TotalSalesPerMonthController {
     private final TotalSalesPerMonthService totalSalesPerMonthService;
