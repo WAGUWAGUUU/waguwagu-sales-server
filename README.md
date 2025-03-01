@@ -1,5 +1,5 @@
-![가게 매출 그래프]([sales_graph.png](https://github.com/user-attachments/assets/354c22e8-7ef4-4f9e-ba44-7ee42b3867d2))
 
+![initial](https://github.com/user-attachments/assets/354c22e8-7ef4-4f9e-ba44-7ee42b3867d2))
 
 ## 주요 기능
 
